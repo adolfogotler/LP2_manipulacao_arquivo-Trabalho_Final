@@ -11,7 +11,7 @@ public class SuporteArquivo {
 
 	public static List<Municipio> leArquivo(String arq){
 //		// define nome do arquivo
-		arq = "C:\\Users\\erick\\Desktop\\TrabalhoFinal_LP2\\Atividade_T2_dados_IBGE.txt";
+		arq = "C:\\Users\\aluno.laboratorio\\Documents\\IBGE-v2_2019_06_06 (1)\\Atividade_T2_dados_IBGE.txt";
 		// criar um objeto "arquivo"
 		File f = new File(arq);
 		// criar um objeto de varredura do arquivo
@@ -50,7 +50,9 @@ public class SuporteArquivo {
 		System.out.printf("\n%-10s%-10s%10s%50s%10s","Sigla", "Cód. UF.", 
 				                   "Cod. Mun.", "Município", "População");
 		for (Municipio municipio : municipios) {
-			System.out.printf("\n%-10s%-10s%10s%50s%10s", municipio.getSiglaUF(), municipio.getCodUF(),
+			System.out.printf("\n%-10s%-10s%10s%50s%10s",
+					municipio.getSiglaUF(),
+					municipio.getCodUF(),
 					municipio.getCodMun(),
 					municipio.getMunicipio(),
 					municipio.getPopulacao());
