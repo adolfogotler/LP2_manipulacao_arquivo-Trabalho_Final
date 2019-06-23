@@ -10,7 +10,7 @@ public class DataLoader{
 	// atributos
 	private static String[] header;
 	private static Object[][] data;
-	private static String path = "C:\\Users\\erick\\Desktop\\TrabalhoFinal_LP2\\Atividade_T2_dados_IBGE.txt";
+	private static String path = "../Atividade_T2_dados_IBGE.txt";
 
 	static{
 		convertData(SuporteArquivo.leArquivo(path));
