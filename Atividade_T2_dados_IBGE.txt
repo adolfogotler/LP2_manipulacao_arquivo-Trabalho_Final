@@ -1,4 +1,5 @@
 RO*11*00015*Alta Floresta D'Oeste*23.857
+RO*11*00015*Alta Floresta D'Oeste*23.857
 RO*11*00379*Alto Alegre dos Parecis*11.615
 RO*11*00403*Alto Paraíso*16.758
 RO*11*00346*Alvorada D'Oeste*16.485

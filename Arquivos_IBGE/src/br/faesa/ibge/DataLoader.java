@@ -1,17 +1,21 @@
 package br.faesa.ibge;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class DataLoader{
 	// atributos
 	private static String[] header;
 	private static Object[][] data;
-	private static String path = "T:\\LPII-Tiago\\Atividade_T2_dados_IBGE.txt";
+	private static String path = "C:\\Users\\erick\\Desktop\\TrabalhoFinal_LP2\\Atividade_T2_dados_IBGE.txt";
 
 	static{
 		convertData(SuporteArquivo.leArquivo(path));
-		convertHeader(SuporteArquivo.getHeader()); 		
+		convertHeader(SuporteArquivo.getHeader());
+		calculaRepeticoesMunicipio(SuporteArquivo.leArquivo(path));
 	}
 	
 	// getters & setters
@@ -60,4 +64,29 @@ public class DataLoader{
 //			System.out.println("\n");
 //		}
 	}
+	
+	private static void calculaRepeticoesMunicipio(List<Municipio>municipios){
+		Set<Municipio> municipios_lista = new HashSet<Municipio>(municipios); 
+		String dados = "";
+        for (Municipio municipio : municipios_lista) {
+           dados += Collections.frequency(municipios_lista, municipio); 
+		}
+	}
+	
+	private static void calculoMediaDesvioHabitantesMunicipios(List<Municipio>municipios){
+		Set<Municipio> municipios_lista = new HashSet<Municipio>(municipios); 
+		String dados = "";
+        for (Municipio municipio : municipios_lista) {
+           dados += Collections.frequency(municipios_lista, municipio); 
+		}
+	}
+	
+	private static void calculoMediaDesvioHabitantesRegiao(List<Municipio>municipios){
+		Set<Municipio> municipios_lista = new HashSet<Municipio>(municipios); 
+		String dados = "";
+        for (Municipio municipio : municipios_lista) {
+           dados += Collections.frequency(municipios_lista, municipio); 
+		}
+	}
+	
 }

@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -23,6 +27,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 //import javax.swing.table.TableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableRowSorter;
 
 public class IBGE implements WindowListener, ListSelectionListener, ActionListener{
 
@@ -36,6 +41,7 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 	private JButton btnPrimeiro;
 	private JButton btnAnterior;
 	private JButton btnProximo;
+	private JButton btnOrdenarTabela;
 	private JButton btnUltimo;
 	private TableModel tableModel;
 	private int linhaSel;
@@ -155,6 +161,11 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 		btnUltimo.addActionListener(this);
 		panel.add(btnUltimo);
 		
+		btnOrdenarTabela = new JButton("\u2193");
+		btnOrdenarTabela.setBounds(375, 8, 49, 23);
+		btnOrdenarTabela.addActionListener(this);
+		panel.add(btnOrdenarTabela);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 210, 434, 221);
 		mainPanel.add(scrollPane);
@@ -236,6 +247,11 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 		}
 		if (e.getSource() == btnPrimeiro){
 			linhaSel = 0;
+			table.requestFocus();
+			table.changeSelection(linhaSel, 0, false, false);
+		}
+		
+		if (e.getSource() == btnOrdenarTabela){
 			table.requestFocus();
 			table.changeSelection(linhaSel, 0, false, false);
 		}
@@ -323,6 +339,4 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 }

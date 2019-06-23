@@ -2,16 +2,22 @@ package br.faesa.ibge;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map; 
+import java.util.Map.Entry; 
 
 public class SuporteArquivo {
 	private static String header = "Sigla*Cód. UF.*Cod. Mun.*Município*População";
 
 	public static List<Municipio> leArquivo(String arq){
 //		// define nome do arquivo
-		arq = "C:\\Users\\aluno.laboratorio\\Documents\\IBGE-v2_2019_06_06 (1)\\Atividade_T2_dados_IBGE.txt";
+		arq = "C:\\Users\\erick\\Desktop\\TrabalhoFinal_LP2\\Atividade_T2_dados_IBGE.txt";
 		// criar um objeto "arquivo"
 		File f = new File(arq);
 		// criar um objeto de varredura do arquivo
@@ -61,6 +67,7 @@ public class SuporteArquivo {
 	
 	public static String getHeader() {
 		return header;
-	}	
+	}
+		
 }
 
