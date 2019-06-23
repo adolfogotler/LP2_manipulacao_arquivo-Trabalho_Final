@@ -16,8 +16,8 @@ public class SuporteArquivo {
 	private static String header = "Sigla*Cód. UF.*Cod. Mun.*Município*População";
 
 	public static List<Municipio> leArquivo(String arq){
-//		// define nome do arquivo
-		arq = "C:\\Users\\erick\\Desktop\\TrabalhoFinal_LP2\\Atividade_T2_dados_IBGE.txt";
+		// define nome do arquivo
+		arq = "../Atividade_T2_dados_IBGE.txt";
 		// criar um objeto "arquivo"
 		File f = new File(arq);
 		// criar um objeto de varredura do arquivo
