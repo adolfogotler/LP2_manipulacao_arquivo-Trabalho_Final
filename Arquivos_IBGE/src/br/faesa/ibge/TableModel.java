@@ -1,5 +1,9 @@
 package br.faesa.ibge;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
 
 public class TableModel extends AbstractTableModel {
@@ -85,4 +89,12 @@ public class TableModel extends AbstractTableModel {
         }
         System.out.println("--------------------------");
     }
+    
+    public void ordenarDados () {
+    	List<Municipio> municipios = DataLoader.listaMunicipio();
+    	Collections.sort(municipios, new MunicipioComparator());
+    	DataLoader.convertData(municipios);
+    	this.data = DataLoader.getData();
+    }
+    
 }

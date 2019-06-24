@@ -25,7 +25,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-//import javax.swing.table.TableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
@@ -252,6 +251,8 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 		}
 		
 		if (e.getSource() == btnOrdenarTabela){
+			tableModel.ordenarDados();
+			table.repaint();
 			table.requestFocus();
 			table.changeSelection(linhaSel, 0, false, false);
 		}

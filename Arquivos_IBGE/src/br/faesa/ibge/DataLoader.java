@@ -15,7 +15,7 @@ public class DataLoader{
 	static{
 		convertData(SuporteArquivo.leArquivo(path));
 		convertHeader(SuporteArquivo.getHeader());
-		calculaRepeticoesMunicipio(SuporteArquivo.leArquivo(path));
+		// calculaRepeticoesMunicipio(SuporteArquivo.leArquivo(path));
 	}
 	
 	// getters & setters
@@ -27,6 +27,9 @@ public class DataLoader{
 	}
 	public static Object[][] getData() {
 		return data;
+	}
+	public static List<Municipio> listaMunicipio() {
+		return SuporteArquivo.leArquivo(path);
 	}
 	private static void setData(Object[][] data) {
 		DataLoader.data = data;
@@ -44,7 +47,7 @@ public class DataLoader{
 //			System.out.print(DataLoader.header[k]+" ");
 //		}
 	}
-	private static void convertData(List<Municipio>municipios){
+	public static void convertData(List<Municipio>municipios){
 		data = new String[municipios.size()][5];
 		int i = 0;
 		for (Municipio municipio: municipios) {
