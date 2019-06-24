@@ -49,7 +49,6 @@ public class SuporteArquivo {
 			e.printStackTrace();
 		}		
 		return municipios;
-		
 	}
 	
 	public static void imprimeArq(List<Municipio>municipios){
