@@ -1,5 +1,6 @@
 package br.faesa.ibge;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,6 @@ public class DataLoader{
 	static{
 		convertData(SuporteArquivo.leArquivo(path));
 		convertHeader(SuporteArquivo.getHeader());
-		// calculaRepeticoesMunicipio(SuporteArquivo.leArquivo(path));
 	}
 	
 	// getters & setters
@@ -28,9 +28,7 @@ public class DataLoader{
 	public static Object[][] getData() {
 		return data;
 	}
-	public static List<Municipio> listaMunicipio() {
-		return SuporteArquivo.leArquivo(path);
-	}
+	
 	private static void setData(Object[][] data) {
 		DataLoader.data = data;
 	}
@@ -43,9 +41,6 @@ public class DataLoader{
 		while (st.hasMoreTokens()){
 			DataLoader.header[i++] = st.nextToken();
 		}
-//		for (int k=0;k<this.columnNames.length;k++){
-//			System.out.print(DataLoader.header[k]+" ");
-//		}
 	}
 	public static void convertData(List<Municipio>municipios){
 		data = new String[municipios.size()][5];
@@ -59,13 +54,6 @@ public class DataLoader{
 			data[i][4] = municipio.getPopulacao(); 
 			i++;
 		}
-//		System.out.println("============================= data.lenght: "+data.length);
-//		for (int k=0;k<data.length;k++){
-//			for (int m=0;m<data[k].length;m++){
-//				System.out.print(data[k][m]+" ");				
-//			}
-//			System.out.println("\n");
-//		}
 	}
 	
 	private static void calculaRepeticoesMunicipio(List<Municipio>municipios){
@@ -91,5 +79,37 @@ public class DataLoader{
            dados += Collections.frequency(municipios_lista, municipio); 
 		}
 	}
+	
+	public static void ordenarDados () {
+    	List<Municipio> municipios = SuporteArquivo.leArquivo(path);
+    	Collections.sort(municipios, new MunicipioComparator());
+    	convertData(municipios);
+    }
+	
+	public static void ordenarPorRegiao () {
+		String estados[] = {"ES", "RJ", "SP", "MG"};
+    	List<Municipio> municipios = SuporteArquivo.leArquivo(path);
+    	List<Municipio> municipiosSudeste = new ArrayList<Municipio>();
+    	for (Municipio municipio : municipios) {
+			if ((municipio.getSiglaUF().equals(estados[0]) || municipio.getSiglaUF().equals(estados[1]) || municipio.getSiglaUF().equals(estados[2]) || municipio.getSiglaUF().equals(estados[3])) && (municipio.getMunicipio().charAt(0) == 'D' || municipio.getMunicipio().charAt(0) == 'M')) {
+				municipiosSudeste.add(municipio);
+			}
+		}
+    	convertData(municipiosSudeste);
+    }
+	
+	public static void regioesSudeste () {
+		String estados[] = {"ES", "RJ", "SP", "MG"};
+    	List<Municipio> municipios = SuporteArquivo.leArquivo(path);
+    	int contMunicipio = 0;
+    	for (Municipio municipio : municipios) {
+			if (municipio.getSiglaUF().equals(estados[0]) || municipio.getSiglaUF().equals(estados[1]) || municipio.getSiglaUF().equals(estados[2]) || municipio.getSiglaUF().equals(estados[3])) {
+				contMunicipio++;
+			}
+		}
+    	System.out.println("Quantidade de municípios da região sudeste: " + contMunicipio);
+    }
+	
+	
 	
 }
