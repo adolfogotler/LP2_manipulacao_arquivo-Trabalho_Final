@@ -41,6 +41,7 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 	private JButton btnAnterior;
 	private JButton btnProximo;
 	private JButton btnOrdenarTabela;
+	private JButton btnListaRegiao;
 	private JButton btnUltimo;
 	private TableModel tableModel;
 	private int linhaSel;
@@ -141,29 +142,34 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 		panel.setLayout(null);
 		
 		btnPrimeiro = new JButton("<<");
-		btnPrimeiro.setBounds(112, 8, 49, 23);
+		btnPrimeiro.setBounds(198, 8, 49, 23);
 		btnPrimeiro.addActionListener(this);
 		panel.add(btnPrimeiro);
 		
 		btnAnterior = new JButton("<");
-		btnAnterior.setBounds(171, 8, 49, 23);
+		btnAnterior.setBounds(257, 8, 49, 23);
 		btnAnterior.addActionListener(this);
 		panel.add(btnAnterior);
 		
 		btnProximo = new JButton(">");
-		btnProximo.setBounds(230, 8, 49, 23);
+		btnProximo.setBounds(316, 8, 49, 23);
 		btnProximo.addActionListener(this);
 		panel.add(btnProximo);
 		
 		btnUltimo = new JButton(">>");
-		btnUltimo.setBounds(288, 8, 49, 23);
+		btnUltimo.setBounds(375, 8, 49, 23);
 		btnUltimo.addActionListener(this);
 		panel.add(btnUltimo);
 		
 		btnOrdenarTabela = new JButton("\u2193");
-		btnOrdenarTabela.setBounds(375, 8, 49, 23);
+		btnOrdenarTabela.setBounds(58, 8, 49, 23);
 		btnOrdenarTabela.addActionListener(this);
 		panel.add(btnOrdenarTabela);
+		
+		btnListaRegiao = new JButton("\u00AB");
+		btnListaRegiao.setBounds(10, 8, 49, 23);
+		btnListaRegiao.addActionListener(this);
+		panel.add(btnListaRegiao);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 210, 434, 221);
@@ -175,6 +181,8 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 		table.getSelectionModel().addListSelectionListener(this);
 		scrollPane.setViewportView(table);
 		configTableColumns();
+		
+		tableModel.relatorioQtdMunicipioSudeste();
 	}
 	
 // ================================================ //	
@@ -249,9 +257,14 @@ public class IBGE implements WindowListener, ListSelectionListener, ActionListen
 			table.requestFocus();
 			table.changeSelection(linhaSel, 0, false, false);
 		}
-		
 		if (e.getSource() == btnOrdenarTabela){
-			tableModel.ordenarDados();
+			tableModel.atualizaTabela();
+			table.repaint();
+			table.requestFocus();
+			table.changeSelection(linhaSel, 0, false, false);
+		}
+		if (e.getSource() == btnListaRegiao){
+			tableModel.listarMunicipioRegiao();
 			table.repaint();
 			table.requestFocus();
 			table.changeSelection(linhaSel, 0, false, false);

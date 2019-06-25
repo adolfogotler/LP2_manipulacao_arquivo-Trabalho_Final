@@ -90,11 +90,18 @@ public class TableModel extends AbstractTableModel {
         System.out.println("--------------------------");
     }
     
-    public void ordenarDados () {
-    	List<Municipio> municipios = DataLoader.listaMunicipio();
-    	Collections.sort(municipios, new MunicipioComparator());
-    	DataLoader.convertData(municipios);
-    	this.data = DataLoader.getData();
+    public void atualizaTabela () {
+    	DataLoader.ordenarDados();
+    	data = DataLoader.getData();
     }
     
+    public void listarMunicipioRegiao () {
+    	DataLoader.ordenarPorRegiao();
+    	data = DataLoader.getData();
+    }
+    
+    public void relatorioQtdMunicipioSudeste () {
+    	DataLoader.regioesSudeste();
+    }
+        
 }
